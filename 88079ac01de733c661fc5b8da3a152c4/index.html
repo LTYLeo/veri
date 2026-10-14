@@ -9,45 +9,73 @@
   :root { color-scheme: dark; }
   * { box-sizing: border-box; }
   body {
-    margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
-    background: #0d1117; color: #e6edf3; padding: 20px;
+    margin: 0; background: #0d1117; color: #e6edf3; padding: 16px 14px 48px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    -webkit-text-size-adjust: 100%;
   }
-  .card { width: 100%; max-width: 460px; background: #161b22; border: 1px solid #30363d; border-radius: 16px; padding: 24px; }
-  h1 { margin: 0 0 4px; font-size: 15px; font-weight: 600; color: #8b949e; letter-spacing: .04em; text-transform: uppercase; }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .card { background: #161b22; border: 1px solid #30363d; border-radius: 14px; padding: 20px; margin-bottom: 14px; }
+  .eyebrow { font-size: 12px; font-weight: 600; color: #8b949e; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 6px; }
   .code {
-    font-size: clamp(44px, 15vw, 72px); font-weight: 800; letter-spacing: .1em;
-    line-height: 1.1; margin: 10px 0 6px; color: #7ee787; word-break: break-all;
+    font-size: clamp(46px, 16vw, 76px); font-weight: 800; letter-spacing: .1em; line-height: 1.05;
+    margin: 6px 0 10px; color: #7ee787; word-break: break-all;
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   }
-  .code.none { font-size: 30px; color: #f0883e; letter-spacing: 0; }
-  .meta { font-size: 13px; color: #8b949e; line-height: 1.7; }
-  .meta b { color: #c9d1d9; font-weight: 600; }
-  .subject { margin-top: 14px; padding-top: 14px; border-top: 1px solid #30363d; font-size: 13px; color: #8b949e; word-break: break-word; }
-  .ctx { margin-top: 10px; font-size: 12px; color: #6e7681; background: #0d1117; border-radius: 8px; padding: 10px; word-break: break-word; }
-  h2 { font-size: 12px; color: #6e7681; text-transform: uppercase; letter-spacing: .05em; margin: 22px 0 8px; }
+  .code.none { font-size: 26px; color: #f0883e; letter-spacing: 0; line-height: 1.35; }
+  .kv { font-size: 13px; color: #8b949e; line-height: 1.75; }
+  .kv b { color: #c9d1d9; font-weight: 600; }
+  .pill { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px;
+           background: #1f6feb22; color: #79c0ff; border: 1px solid #1f6feb55; margin-left: 6px; }
+  .pill.warn { background: #d2992222; color: #e3b341; border-color: #d2992255; }
+  h2 { font-size: 12px; color: #6e7681; text-transform: uppercase; letter-spacing: .06em; margin: 0 0 10px; }
+  .hdr { font-size: 13px; line-height: 1.85; color: #8b949e; padding-bottom: 12px; border-bottom: 1px solid #21262d; margin-bottom: 12px; }
+  .hdr b { color: #c9d1d9; }
+  .body {
+    white-space: pre-wrap; word-break: break-word; font-size: 14px; line-height: 1.75; color: #e6edf3;
+    font-family: ui-monospace, SFMono-Regular, Menlo, "PingFang SC", monospace;
+    max-height: 60vh; overflow: auto; padding-right: 4px;
+  }
+  .body::-webkit-scrollbar { width: 8px; }
+  .body::-webkit-scrollbar-thumb { background: #30363d; border-radius: 4px; }
   ul { list-style: none; margin: 0; padding: 0; }
-  li { padding: 9px 0; border-bottom: 1px solid #21262d; font-size: 13px; display: flex; justify-content: space-between; gap: 12px; }
+  li { padding: 9px 0; border-bottom: 1px solid #21262d; font-size: 13px; }
   li:last-child { border-bottom: 0; }
+  li .row { display: flex; justify-content: space-between; gap: 10px; }
   li .c { color: #7ee787; font-weight: 700; font-family: ui-monospace, Menlo, monospace; }
+  li .c.no { color: #6e7681; font-weight: 400; }
   li .t { color: #6e7681; white-space: nowrap; }
-  footer { margin-top: 20px; font-size: 11px; color: #484f58; text-align: center; line-height: 1.6; }
+  li .s { color: #8b949e; font-size: 12px; margin-top: 3px; word-break: break-word; }
+  .warnbox { background: #d2992215; border: 1px solid #d2992255; color: #e3b341;
+              border-radius: 10px; padding: 12px 14px; font-size: 13px; line-height: 1.65; margin-bottom: 14px; }
+  footer { text-align: center; font-size: 11px; color: #484f58; line-height: 1.9; }
 </style>
 </head>
 <body>
-<div class="card">
-  <h1>DeepSeek 验证码</h1>
-  <div class="code none">未找到验证码</div>
-  <div class="meta">
-    <div>抓取时间：<b>2026-10-14 22:03:55</b></div>
-    <div>邮件时间：<b>—</b></div>
-    <div>状态：<b>凭据不可用：missing real values for: IMAP_USER, IMAP_PASS</b></div>
+<div class="wrap">
+
+  <div class="card">
+    <p class="eyebrow">DeepSeek 验证码</p>
+    <div class="code none">暂无验证码</div>
+    <div class="kv">
+      <div>抓取时间：<b>2026-10-14 22:07:15</b></div>
+      <div>邮件时间：<b>—</b><span class="pill warn">收件箱中暂未找到 DeepSeek 邮件</span></div>
+      <div>最新邮件：<b>—</b></div>
+    </div>
   </div>
-  <div class="subject">发件人：—<br>主题：—</div>
-  
-  <h2>最近邮件</h2>
-  <ul><li><span class="t">暂无 DeepSeek 邮件</span></li></ul>
-  <footer>每 60 秒自动刷新 · 页面生成于 2026-10-14 22:03:55</footer>
+
+  <div class="warnbox">暂时没有 DeepSeek 邮件。验证码发出后本页会在 1 分钟内自动更新，无需手动刷新。</div>
+
+  <div class="card">
+    <h2>最新 DeepSeek 邮件全文</h2>
+    <div class="body">收件箱里还没有 DeepSeek 的邮件。</div>
+  </div>
+
+  <div class="card">
+    <h2>最近 DeepSeek 邮件</h2>
+    <ul><li><span class="c no">暂无 DeepSeek 邮件</span></li></ul>
+  </div>
+
+  <footer>每 60 秒自动刷新 · 页面生成于 2026-10-14 22:07:15<br>请勿长期保留此页面；用完请删除仓库。</footer>
 </div>
 <script>setTimeout(function () { location.reload(); }, 60000);</script>
 </body>
